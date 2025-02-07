@@ -17,12 +17,13 @@ namespace FilmsWebCatalog.Controllers
             var genres = context.Genres.OrderByDescending(x=>x.Id).ToList();
             return View(genres);
         }
+		[HttpGet]
         public IActionResult Create()
         {
 
             return View();
         }
-		[HttpGet]
+		[HttpPost]
 		public IActionResult Create(GenreViewModel genre)
 		{
 			if (!ModelState.IsValid)
@@ -37,9 +38,10 @@ namespace FilmsWebCatalog.Controllers
 
 			context.Genres.Add(genreNew);
 			context.SaveChanges();
-
+			//await this.context.Genres.Add(genreNew);
 			return RedirectToAction("Index", "Genre");
 		}
+		[HttpGet]
 		public IActionResult Edit(int id)
 		{
 			var genre = context.Genres.Find(id);
@@ -54,7 +56,7 @@ namespace FilmsWebCatalog.Controllers
 			ViewData["GenreId"] = genre.Id;
 			return View(genreViewModel);
 		}
-		[HttpGet]
+		[HttpPost]
 		public IActionResult Edit(int id, GenreViewModel genre)
 		{
 			var genres = context.Genres.Find(id);
@@ -75,6 +77,7 @@ namespace FilmsWebCatalog.Controllers
 
 			return RedirectToAction("Index", "Genre");
 		}
+		[HttpGet]
 		public IActionResult Delete(int id)
 		{
 			var genre = context.Genres.Find(id);
