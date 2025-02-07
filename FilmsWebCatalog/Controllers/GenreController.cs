@@ -40,5 +40,21 @@ namespace FilmsWebCatalog.Controllers
 
 			return RedirectToAction("Index", "Genre");
 		}
+		public IActionResult Edit(int id)
+		{
+			var genre = context.Genres.Find(id);
+			if (genre == null)
+			{
+				return RedirectToAction("Index", "Genre");
+			}
+			var genreViewModel = new GenreViewModel()
+			{
+				Name = genre.Name
+			};
+			ViewData["GenreId"] = genre.Id;
+			return View(genreViewModel);
+
+
+		}
 	}
 }
