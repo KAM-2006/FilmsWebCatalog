@@ -38,11 +38,11 @@ namespace FilmsWebCatalog.Data
 			modelBuilder.Entity<IdentityUser>()
 				.HasData(TestUser);
 
-			//GenresList = SeedGenres();
+			GenresList = SeedGenres();
 			modelBuilder.Entity<Genre>()
 				.HasData(GenresList);
 
-			//DirectorsList = SeedDirectors();
+			DirectorsList = SeedDirectors();
 			modelBuilder.Entity<Director>()
 				.HasData(DirectorsList);
 
@@ -149,6 +149,35 @@ namespace FilmsWebCatalog.Data
 				.HasData(FilmActorsList);
 
 			base.OnModelCreating(modelBuilder);
+		}
+
+		private List<Genre> SeedGenres()
+		{
+			GenresList = new List<Genre>
+		{
+			new Genre() { Id = 1, Name = "action" },
+			new Genre() { Id = 2, Name = "comedy" },
+			new Genre() { Id = 3, Name = "mystery" },
+			new Genre() { Id = 4, Name = "thriller" },
+			new Genre() { Id = 5, Name = "drama" },
+			new Genre() { Id = 6, Name = "romance" }
+		};
+
+			return GenresList;
+		}
+		private List<Director> SeedDirectors()
+		{
+			DirectorsList = new List<Director>
+		{
+			new Director() { Id = 1, Name = "Gil Junger", DateOfBirth = "11/7/1954" },
+			new Director() { Id = 2, Name = "Jon Watts", DateOfBirth = "6/28/1981" },
+			new Director() { Id = 3, Name = "Will Gluck", DateOfBirth = "11/7/1978" },
+			new Director() { Id = 4, Name = "Ivaylo Penchev", DateOfBirth = "3/10/1970" },
+			new Director() { Id = 5, Name = "Joe Russo", DateOfBirth = "7/18/1971"},
+			new Director() { Id = 6, Name = "Guy Ritchie", DateOfBirth = "9/10/1968" }
+		};
+
+			return DirectorsList;
 		}
 	}
 }
