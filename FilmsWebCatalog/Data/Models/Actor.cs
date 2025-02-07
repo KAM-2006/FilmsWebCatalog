@@ -23,7 +23,7 @@ namespace FilmsWebCatalog.Data.Models
 		public string LastName { get; set; }
 		public int Years { get; set; }
 		public string DateOfBirth { get; set; }
-		//public ICollection<FilmActor> FilmsActors { get; set; }
+		public ICollection<FilmActor> FilmsActors { get; set; }
 
 		public override string ToString()
 		{

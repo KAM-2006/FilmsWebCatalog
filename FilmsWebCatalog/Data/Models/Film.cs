@@ -28,7 +28,7 @@ namespace FilmsWebCatalog.Data.Models
 		public Genre Genre { get; set; }
 		public int DirectorID { get; set; }
 		public Director Director { get; set; }
-		//public ICollection<FilmActor> FilmsActors { get; set; }
+		public ICollection<FilmActor> FilmsActors { get; set; }
 
 		[Required]
 		public string UserID { get; set; } = null!;

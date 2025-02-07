@@ -10,6 +10,6 @@ namespace FilmsWebCatalog.Data.Models
 		[Required]
 		public string Name { get; set; }
 		public string DateOfBirth { get; set; }
-		//public ICollection<Film> Films { get; set; }
+		public ICollection<Film> Films { get; set; }
 	}
 }
