@@ -34,7 +34,7 @@ namespace FilmsWebCatalog.Data
 			modelBuilder.Entity<FilmActor>().HasKey(fa => new
 			{ fa.FilmId, fa.ActorId });
 
-			//TestUser = SeedUsers();
+			TestUser = SeedUsers();
 			modelBuilder.Entity<IdentityUser>()
 				.HasData(TestUser);
 
@@ -46,7 +46,7 @@ namespace FilmsWebCatalog.Data
 			modelBuilder.Entity<Director>()
 				.HasData(DirectorsList);
 
-			//ActorsList = SeedActors();
+			ActorsList = SeedActors();
 			modelBuilder.Entity<Actor>()
 				.HasData(ActorsList);
 
@@ -144,11 +144,25 @@ namespace FilmsWebCatalog.Data
 				}
 				);
 
-			//FilmActorsList = SeedFilmActors();
+			FilmActorsList = SeedFilmActors();
 			modelBuilder.Entity<FilmActor>()
 				.HasData(FilmActorsList);
 
 			base.OnModelCreating(modelBuilder);
+		}
+		private IdentityUser SeedUsers()
+		{
+			var hasher = new PasswordHasher<IdentityUser>();
+
+			TestUser = new IdentityUser()
+			{
+				UserName = "test@softuni.bg",
+				NormalizedUserName = "TEST@SOFTUNI.BG",
+			};
+
+			TestUser.PasswordHash = hasher.HashPassword(TestUser, "softuni");
+
+			return TestUser;
 		}
 
 		private List<Genre> SeedGenres()
@@ -178,6 +192,50 @@ namespace FilmsWebCatalog.Data
 		};
 
 			return DirectorsList;
+		}
+		private List<Actor> SeedActors()
+		{
+			ActorsList = new List<Actor>
+		{
+			new Actor() { Id = 1, FirstName = "Tom", LastName = "Holland", Years = 27, DateOfBirth = "6/1/1996" },
+			new Actor() { Id = 2, FirstName = "Zendaya", LastName = "Coleman", Years = 27, DateOfBirth = "9/1/1996" },
+			new Actor() { Id = 3, FirstName = "Tobey", LastName = "Maguire", Years = 48, DateOfBirth = "6/27/1975" },
+			new Actor() { Id = 4, FirstName = "Andrew", LastName = "Garfield", Years = 40, DateOfBirth = "8/20/1983" },
+			new Actor() { Id = 5, FirstName = "Jacob", LastName = "Batalon", Years = 27, DateOfBirth = "10/9/1996" },
+			new Actor() { Id = 6, FirstName = "Sydney", LastName = "Sweeney", Years = 26, DateOfBirth = "9/12/1997" },
+			new Actor() { Id = 7, FirstName = "Dakota", LastName = "Johnson", Years = 34, DateOfBirth = "10/4/1989" },
+			new Actor() { Id = 8, FirstName = "Maria", LastName = "Bakalova", Years = 27, DateOfBirth = "6/4/1996" },
+			new Actor() { Id = 9, FirstName = "Chriss", LastName = "Pratt", Years = 44, DateOfBirth = "6/21/1979" },
+			new Actor() { Id = 10, FirstName = "Robert", LastName = "Downey Jr.", Years = 58, DateOfBirth = "4/4/1965" },
+			new Actor() { Id = 11, FirstName = "Julia", LastName = "Stiles", Years = 42, DateOfBirth = "3/28/1981" }
+		};
+
+			return ActorsList;
+		}
+		private List<FilmActor> SeedFilmActors()
+		{
+			FilmActorsList = new List<FilmActor>
+		{
+			new FilmActor() { FilmId = 1, ActorId = 1 },
+			new FilmActor() { FilmId = 1, ActorId = 2 },
+			new FilmActor() { FilmId = 1, ActorId = 3 },
+			new FilmActor() { FilmId = 1, ActorId = 4 },
+			new FilmActor() { FilmId = 1, ActorId = 5 },
+			new FilmActor() { FilmId = 2, ActorId = 6 },
+			new FilmActor() { FilmId = 3, ActorId = 6 },
+			new FilmActor() { FilmId = 3, ActorId = 7 },
+			new FilmActor() { FilmId = 4, ActorId = 8 },
+			new FilmActor() { FilmId = 5, ActorId = 8 },
+			new FilmActor() { FilmId = 5, ActorId = 9 },
+			new FilmActor() { FilmId = 6, ActorId = 1 },
+			new FilmActor() { FilmId = 6, ActorId = 9 },
+			new FilmActor() { FilmId = 6, ActorId = 10 },
+			new FilmActor() { FilmId = 7, ActorId = 10 },
+			new FilmActor() { FilmId = 8, ActorId = 11 },
+			new FilmActor() { FilmId = 9, ActorId = 10 }
+		};
+
+			return FilmActorsList;
 		}
 	}
 }
