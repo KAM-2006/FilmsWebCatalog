@@ -53,8 +53,38 @@ namespace FilmsWebCatalog.Controllers
 			};
 			ViewData["GenreId"] = genre.Id;
 			return View(genreViewModel);
+		}
+		[HttpGet]
+		public IActionResult Edit(int id, GenreViewModel genre)
+		{
+			var genres = context.Genres.Find(id);
+			if (genres == null)
+			{
+				return RedirectToAction("Index", "Genre");
+			}
 
+			if (!ModelState.IsValid)
+			{
+				ViewData["GenreId"] = genres.Id;
+				
+				return View(genre);
+			}
+			genres.Name = genre.Name;
 
+			context.SaveChanges();
+
+			return RedirectToAction("Index", "Genre");
+		}
+		public IActionResult Delete(int id)
+		{
+			var genre = context.Genres.Find(id);
+			if (genre == null)
+			{
+				return RedirectToAction("Index", "Genre");
+			}
+			context.Genres.Remove(genre);
+			context.SaveChanges(true);
+			return RedirectToAction("Index", "Genre");
 		}
 	}
 }
