@@ -12,7 +12,7 @@ namespace FilmsWebCatalog
 
 			// Add services to the container.
 			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-			builder.Services.AddDbContext<ApplicationDbContext>(options =>
+			builder.Services.AddDbContext<FilmsWebCatalogAppDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
 			builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -25,7 +25,7 @@ namespace FilmsWebCatalog
 				options.Password.RequireUppercase = false;
 				options.Password.RequireLowercase = false;
 			})
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+				.AddEntityFrameworkStores<FilmsWebCatalogAppDbContext>();
 
 			builder.Services.AddControllersWithViews();
 

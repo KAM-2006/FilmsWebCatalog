@@ -8,7 +8,7 @@ using System;
 
 namespace FilmsWebCatalog.Data.Migrations
 {
-	[DbContext(typeof(ApplicationDbContext))]
+	[DbContext(typeof(FilmsWebCatalogAppDbContext))]
 	partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 	{
 		protected override void BuildModel(ModelBuilder modelBuilder)
