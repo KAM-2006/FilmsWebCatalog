@@ -9,7 +9,7 @@ namespace FilmsWebCatalog.Data.Models
 		{
 
 		}
-		public Film(string title, string filmDirector, string dateOfReleasing,
+		public Film(string title, string dateOfReleasing,
 			double rating, int directorId, int genreId)
 		{
 			this.Title = title;

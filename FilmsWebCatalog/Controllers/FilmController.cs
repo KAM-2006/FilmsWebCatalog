@@ -1,6 +1,14 @@
 ﻿using FilmsWebCatalog.Data;
 using FilmsWebCatalog.Data.Models;
+using FilmsWebCatalog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using NuGet.ContentModel;
+using SQLitePCL;
+using System.IO;
+using System.Runtime.ExceptionServices;
+using System.Security.Claims;
 using static FilmsWebCatalog.Data.Models.Genre;
 
 namespace FilmsWebCatalog.Controllers
@@ -14,8 +22,8 @@ namespace FilmsWebCatalog.Controllers
         }
         public IActionResult Index()
         {
+
             List<Film> films = FillGenreDirector().OrderByDescending(x => x.Id).ToList();
-           // var films = context.Films.OrderByDescending(x => x.Id).ToList();
             return View(films);
         }
         public List<Film> FillGenreDirector()
@@ -54,5 +62,32 @@ namespace FilmsWebCatalog.Controllers
             }
             return null!;
         }
-    }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            List<Director> directors = await context.Directors.ToListAsync();
+            List<Genre> genres = await context.Genres.ToListAsync();
+
+            FIlmCreateViewModel viewModel = new FIlmCreateViewModel();
+            viewModel.Director = directors;
+            viewModel.Genres = genres;
+			return View(viewModel);
+        }
+		[HttpPost]
+		public async Task<IActionResult> Create(FIlmCreateViewModel film)
+		{
+			if (!ModelState.IsValid)
+			{			
+				return View(film);
+			}
+
+            Film filmNew = new Film(film.Title, film.DateOfReleasing, film.Rating, film.DirectorId, film.GenreID );
+
+			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            filmNew.UserID = userId;
+            await context.Films.AddAsync(filmNew);
+			await context.SaveChangesAsync();
+			return RedirectToAction("Index", "Film");
+		}
+	}
 }

@@ -10,6 +10,6 @@ namespace FilmsWebCatalog.Models
         public int GenreID { get; set; }
         public Genre Genre { get; set; }
         public int DirectorID { get; set; }
-        public Director Director { get; set; }
+        public List<Director> Director { get; set; } = new List<Director> ();
     }
 }
