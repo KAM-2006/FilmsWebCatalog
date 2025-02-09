@@ -89,5 +89,68 @@ namespace FilmsWebCatalog.Controllers
 			await context.SaveChangesAsync();
 			return RedirectToAction("Index", "Film");
 		}
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+			var film = context.Films.Find(id);
+			if (film == null)
+			{
+				return RedirectToAction("Index", "Film");
+			}
+			context.Films.Remove(film);
+			context.SaveChanges(true);
+			return RedirectToAction("Index", "Film");
+		}
+
+        [HttpGet]
+		public async Task<IActionResult> Edit(int id)
+        {
+
+			var film = context.Films.Find(id);
+			if (film == null)
+			{
+				return RedirectToAction("Index", "Film");
+			}
+			var filmCreateViewModel = new FIlmCreateViewModel()
+			{
+				Title = film.Title,
+                DateOfReleasing = film.DateOfReleasing,
+                Rating = film.Rating,
+                GenreID = film.GenreID,
+                DirectorId = film.DirectorID
+			};
+			ViewData["FilmId"] = film.Id;
+			List<Director> directors = await context.Directors.ToListAsync();
+			List<Genre> genres = await context.Genres.ToListAsync();
+
+			filmCreateViewModel.Director = directors;
+			filmCreateViewModel.Genres = genres;
+			return View(filmCreateViewModel);
+		}
+        [HttpPost]
+		public async Task<IActionResult> Edit(int id, FIlmCreateViewModel film)
+		{
+			var films = context.Films.Find(id);
+			if (films == null)
+			{
+				return RedirectToAction("Index", "Film");
+			}
+
+			if (!ModelState.IsValid)
+			{
+				ViewData["FilmId"] = films.Id;
+
+				return View(films);
+			}
+			films.Title=film.Title;
+			films.DateOfReleasing = film.DateOfReleasing;
+			films.Rating=film.Rating;
+            films.GenreID=film.GenreID;
+            films.DirectorID=film.DirectorId;
+
+			await context.SaveChangesAsync();
+
+			return RedirectToAction("Index", "Film");
+		}
 	}
 }
