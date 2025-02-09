@@ -38,7 +38,6 @@ namespace FilmsWebCatalog.Controllers
 
 			context.Genres.Add(genreNew);
 			context.SaveChanges();
-			//await this.context.Genres.Add(genreNew);
 			return RedirectToAction("Index", "Genre");
 		}
 		[HttpGet]
