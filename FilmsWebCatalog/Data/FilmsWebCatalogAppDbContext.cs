@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using static FilmsWebCatalog.Common.AdminUser;
 
 namespace FilmsWebCatalog.Data
 {
@@ -22,6 +23,7 @@ namespace FilmsWebCatalog.Data
 		public DbSet<Genre> Genres { get; set; }
 		public DbSet<Director> Directors { get; set; }
 
+		public IdentityUser AdminUser { get; set; }
 		private IdentityUser TestUser { get; set; }
 		private List<Genre> GenresList { get; set; }
 		private List<Director> DirectorsList { get; set; }
@@ -34,9 +36,8 @@ namespace FilmsWebCatalog.Data
 			modelBuilder.Entity<FilmActor>().HasKey(fa => new
 			{ fa.FilmId, fa.ActorId });
 
-			TestUser = SeedUsers();
-			modelBuilder.Entity<IdentityUser>()
-				.HasData(TestUser);
+			SeedUsers(modelBuilder);
+			
 
 			GenresList = SeedGenres();
 			modelBuilder.Entity<Genre>()
@@ -150,7 +151,7 @@ namespace FilmsWebCatalog.Data
 
 			base.OnModelCreating(modelBuilder);
 		}
-		private IdentityUser SeedUsers()
+		private void SeedUsers(ModelBuilder modelBuilder)
 		{
 			var hasher = new PasswordHasher<IdentityUser>();
 
@@ -162,8 +163,20 @@ namespace FilmsWebCatalog.Data
 
 			TestUser.PasswordHash = hasher.HashPassword(TestUser, "softuni");
 
-			return TestUser;
-		}
+            AdminUser = new IdentityUser()
+            {
+				Id = Guid.NewGuid().ToString(),
+				Email = AdminEmail,
+				NormalizedEmail = AdminEmail,
+                UserName = AdminEmail,
+                NormalizedUserName = AdminEmail,
+            };
+
+            AdminUser.PasswordHash = hasher.HashPassword(AdminUser, "admin");
+
+            modelBuilder.Entity<IdentityUser>()
+                .HasData(TestUser, AdminUser);
+        }
 
 		private List<Genre> SeedGenres()
 		{
