@@ -1,6 +1,9 @@
 ﻿using FilmsWebCatalog.Data;
 using FilmsWebCatalog.Data.Models;
+using FilmsWebCatalog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace FilmsWebCatalog.Controllers
 {
@@ -52,5 +55,31 @@ namespace FilmsWebCatalog.Controllers
             }
             return null!;
         }
-    }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            List<Film> films = await context.Films.ToListAsync();
+            List<Actor> actors = await context.Actors.ToListAsync();
+
+            //FIlmCreateViewModel viewModel = new FIlmCreateViewModel();
+            FilmActorViewModel viewModel = new FilmActorViewModel();
+            viewModel.Films = films;
+            viewModel.Actors = actors;
+            return View(viewModel);
+        }
+		[HttpPost]
+		public async Task<IActionResult> Create(FilmActorViewModel item)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(item);
+			}
+
+			FilmActor filmNew = new FilmActor(item.FilmId, item.ActorId);
+
+			await context.FilmsActors.AddAsync(filmNew);
+			await context.SaveChangesAsync();
+			return RedirectToAction("Index", "FilmActor");
+		}
+	}
 }

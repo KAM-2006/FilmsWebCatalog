@@ -1,0 +1,48 @@
+﻿@using FilmsWebCatalog.Models;
+@model FilmActorViewModel;
+
+<div class="row">
+	<div class="col-md-8 mx-auto rounded border p-3">
+		<h2 class="text-center mb-5">New FilmActor</h2>
+		<form method="post" enctype="multipart/form-data">
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">Film</label>
+				<div class="col-sm-8">
+					<select class="form-control" asp-for="@Model.FilmId">
+						<option value="">Select Film</option>
+						@foreach (var film in Model.Films)
+						{
+							<option value="@film.Id">@film.Title</option>
+						}
+					</select>
+				</div>
+			</div>
+			<div class="row mb-3>">
+				<label class="col-sm-4 col-form-label">Actor</label>
+				<div class="col-sm-8">
+					<select class="form-control" asp-for="@Model.ActorId">
+						<option value="">Select Actor</option>
+						@foreach (var actor in Model.Actors)
+						{
+							<option value="@actor.Id">@actor.FirstName @actor.LastName</option>
+						}
+					</select>
+					<span asp-validation-for="@Model.ActorId" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row>">
+				<div class="offset-sm-4 col-sm-4 d-grid">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+				<div class="col-sm-4 d-grid">
+					<a class="btn btn-outline-primary" asp-controller="FilmActor" asp-action="Index" role="button">
+						Cancel
+					</a>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+

@@ -26,12 +26,6 @@
                 <td>@item.Film.Title</td>
                 <td>@item.Actor.FirstName</td>
                 <td>@item.Actor.LastName</td>
-                <td style=" white-space:nowrap">
-                    <a class="btn btn-primary btn-sm" asp-controller="FilmActor" asp-action="Edit"
-                       asp-route-id="@item.FilmId">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-controller="FilmActor" asp-action="Delete"
-                       asp-route-id="@item.FilmId" onclick="return confirm('Are you sure?')">Delete</a>
-                </td>
             </tr>
         }
     </tbody>
