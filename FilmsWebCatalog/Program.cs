@@ -25,6 +25,7 @@ namespace FilmsWebCatalog
 				options.Password.RequireUppercase = false;
 				options.Password.RequireLowercase = false;
 			})
+				.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<FilmsWebCatalogAppDbContext>();
 
 			builder.Services.AddControllersWithViews();

@@ -1,9 +1,11 @@
 ﻿using FilmsWebCatalog.Data;
 using FilmsWebCatalog.Data.Models;
 using FilmsWebCatalog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using static FilmsWebCatalog.Common.AdminUser;
 
 namespace FilmsWebCatalog.Controllers
 {
@@ -56,6 +58,7 @@ namespace FilmsWebCatalog.Controllers
             return null!;
         }
         [HttpGet]
+        [Authorize(Roles = AdminRoleName)]
         public async Task<IActionResult> Create()
         {
             List<Film> films = await context.Films.ToListAsync();

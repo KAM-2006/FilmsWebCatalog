@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmsWebCatalog.Data.Migrations
 {
     [DbContext(typeof(FilmsWebCatalogAppDbContext))]
-    [Migration("20250210140534_AddAdminUser")]
-    partial class AddAdminUser
+    [Migration("20250210152140_AddRole")]
+    partial class AddRole
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -249,7 +249,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 1,
                             Rating = 8.1999999999999993,
                             Title = "Spider-Man: No Way Home",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -259,7 +259,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 2,
                             Rating = 6.2999999999999998,
                             Title = "Anyone But You",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -269,7 +269,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 1,
                             Rating = 3.7000000000000002,
                             Title = "Madame Web",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -279,7 +279,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 2,
                             Rating = 7.7999999999999998,
                             Title = "Last Call",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -289,7 +289,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 1,
                             Rating = 7.9000000000000004,
                             Title = "Guardians of the Galaxy Vol. 3",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -299,7 +299,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 5,
                             Rating = 8.4000000000000004,
                             Title = "Avengers: Infinity War",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -309,7 +309,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 3,
                             Rating = 7.5999999999999996,
                             Title = "Sherlok Holmes",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -319,7 +319,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 2,
                             Rating = 7.2999999999999998,
                             Title = "10 things I hate you about you",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         },
                         new
                         {
@@ -329,7 +329,7 @@ namespace FilmsWebCatalog.Data.Migrations
                             GenreID = 5,
                             Rating = 8.4000000000000004,
                             Title = "Oppenheimer",
-                            UserID = "82213299-1100-4aa3-967a-c3d058d6881c"
+                            UserID = "68f1bb45-f590-4c77-9da3-f5971207df55"
                         });
                 });
 
@@ -603,31 +603,31 @@ namespace FilmsWebCatalog.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "82213299-1100-4aa3-967a-c3d058d6881c",
+                            Id = "68f1bb45-f590-4c77-9da3-f5971207df55",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e3d33a69-6923-42c3-a534-b2a08d07e8fa",
+                            ConcurrencyStamp = "2f2a9449-2b76-4c88-acf5-12ac6df49e11",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "TEST@SOFTUNI.BG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL0Xyy2XMCkpKooJFm5I9JcWu88/iZbmoq4TejMrXlDwEWpu5lUgukv+RUdrH1i7YA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJNkIQXC2CWkNT8U/r8wmwyJ6wRlfGIWEvo05quRB8jlSDqHDGwDgrf8VnoIc19rvw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6faefc01-7755-4119-bd7e-6ad412cd3dbd",
+                            SecurityStamp = "e8ffbcdf-5c3d-409b-9e29-3a7b72a2e8bc",
                             TwoFactorEnabled = false,
                             UserName = "test@softuni.bg"
                         },
                         new
                         {
-                            Id = "291d856a-5bfb-4808-b50e-e580599e5c66",
+                            Id = "96be1601-466f-4a4d-a9c5-a8aac54331d5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "93032ce1-213e-47dc-99df-1d3db1093b34",
+                            ConcurrencyStamp = "609470ea-d5aa-4c21-9081-41c4ef0ab5ff",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@mail.com",
                             NormalizedUserName = "admin@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMpeym8fjg4pqZ3fKi4L+3evVpyUvdn3gWWCNkYV5jxROYEokfX/zN0JD3W+9IN+wA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFKznc47WCHMVMiEC3SlgqJ8lMvfaGrSn0eWcbZlERppUu+YsFRyRdKlKQl3H7vMfQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "20a1b439-59fa-4804-acd7-3dd49001dd55",
+                            SecurityStamp = "1e6d9d2f-f037-40a3-ab29-59f5e2db03bf",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });

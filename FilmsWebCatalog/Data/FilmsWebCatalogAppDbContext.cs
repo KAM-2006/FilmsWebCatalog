@@ -11,11 +11,6 @@ namespace FilmsWebCatalog.Data
 		public FilmsWebCatalogAppDbContext(DbContextOptions<FilmsWebCatalogAppDbContext> options)
 			: base(options)
 		{
-			if (Database.IsRelational())
-			{
-				Database.EnsureCreated();
-			}
-			Database.Migrate();
 		}
 		public DbSet<Film> Films { get; set; }
 		public DbSet<Actor> Actors { get; set; }

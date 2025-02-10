@@ -1,7 +1,9 @@
 ﻿using FilmsWebCatalog.Data;
 using FilmsWebCatalog.Data.Models;
 using FilmsWebCatalog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static FilmsWebCatalog.Common.AdminUser;
 
 namespace FilmsWebCatalog.Controllers
 {
@@ -18,6 +20,7 @@ namespace FilmsWebCatalog.Controllers
             return View(genres);
         }
 		[HttpGet]
+        [Authorize(Roles = AdminRoleName)]
         public IActionResult Create()
         {
 
@@ -41,7 +44,8 @@ namespace FilmsWebCatalog.Controllers
 			return RedirectToAction("Index", "Genre");
 		}
 		[HttpGet]
-		public IActionResult Edit(int id)
+        [Authorize(Roles = AdminRoleName)]
+        public IActionResult Edit(int id)
 		{
 			var genre = context.Genres.Find(id);
 			if (genre == null)
@@ -77,7 +81,8 @@ namespace FilmsWebCatalog.Controllers
 			return RedirectToAction("Index", "Genre");
 		}
 		[HttpGet]
-		public IActionResult Delete(int id)
+        [Authorize(Roles = AdminRoleName)]
+        public IActionResult Delete(int id)
 		{
 			var genre = context.Genres.Find(id);
 			if (genre == null)

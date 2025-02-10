@@ -10,6 +10,8 @@ using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Security.Claims;
 using static FilmsWebCatalog.Data.Models.Genre;
+using static FilmsWebCatalog.Common.AdminUser;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmsWebCatalog.Controllers
 {
@@ -63,6 +65,7 @@ namespace FilmsWebCatalog.Controllers
             return null!;
         }
         [HttpGet]
+        [Authorize(Roles = AdminRoleName)]
         public async Task<IActionResult> Create()
         {
             List<Director> directors = await context.Directors.ToListAsync();
@@ -90,6 +93,7 @@ namespace FilmsWebCatalog.Controllers
 			return RedirectToAction("Index", "Film");
 		}
         [HttpGet]
+        [Authorize(Roles = AdminRoleName)]
         public IActionResult Delete(int id)
         {
 			var film = context.Films.Find(id);
@@ -103,7 +107,8 @@ namespace FilmsWebCatalog.Controllers
 		}
 
         [HttpGet]
-		public async Task<IActionResult> Edit(int id)
+        [Authorize(Roles = AdminRoleName)]
+        public async Task<IActionResult> Edit(int id)
         {
 
 			var film = context.Films.Find(id);
