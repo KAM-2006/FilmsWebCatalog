@@ -21,6 +21,10 @@
             <th>Id</th>
             <th>Name</th>
             <th>Date of Birth</th>
+            @if (User.IsInRole(AdminRoleName))
+            {
+                <th>Actions</th>
+            }
         </tr>
     </thead>
     <tbody>

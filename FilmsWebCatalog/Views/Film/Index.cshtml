@@ -24,6 +24,10 @@
             <th>Rating</th>
             <th>Genre</th>
             <th>Director</th>
+            @if (User.IsInRole(AdminRoleName))
+            {
+                <th>Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
