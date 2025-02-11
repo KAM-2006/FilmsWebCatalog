@@ -1,28 +1,33 @@
 ﻿@using FilmsWebCatalog.Data.Models;
 @using static FilmsWebCatalog.Common.AdminUser;
-@model List<Actor> 
+@model List<Actor>
 @{
-
 }
-<h2 class=" text-center mb-5">List of @Model.Count Actors</h2>
+
+<h2 class="text-center mb-5 title-custom">List of @Model.Count Actors</h2>
+
 <div class="row mb-5">
     <div class="col">
         @if (User.IsInRole(AdminRoleName))
         {
-        <a class="btn btn-primary" asp-area="" asp-controller="Actor" asp-action="Create">New Actor</a>
+            <a class="btn btn-peach btn-lg" asp-area="" asp-controller="Actor" asp-action="Create">New Actor</a>
         }
     </div>
-    <div class="col">
-    </div>
+    <div class="col"></div>
 </div>
-<table class="table">
-    <thead>
+
+<table class="table table-hover">
+    <thead class="thead-custom">
         <tr>
             <th>Id</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>Years</th>
             <th>Date of Birth</th>
+            @if (User.IsInRole(AdminRoleName))
+            {
+                <th>Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -34,13 +39,13 @@
                 <td>@actor.LastName</td>
                 <td>@actor.Years</td>
                 <td>@actor.DateOfBirth</td>
-                <td style=" white-space:nowrap">
+                <td style="white-space:nowrap">
                     @if (User.IsInRole(AdminRoleName))
                     {
-                    <a class="btn btn-primary btn-sm" asp-controller="Actor" asp-action="Edit"
-                       asp-route-id="@actor.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-controller="Actor" asp-action="Delete"
-                       asp-route-id="@actor.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                        <a class="btn btn-peach btn-sm mx-1" asp-controller="Actor" asp-action="Edit"
+                           asp-route-id="@actor.Id">Edit</a>
+                        <a class="btn btn-peach btn-sm mx-1" asp-controller="Actor" asp-action="Delete"
+                           asp-route-id="@actor.Id" onclick="return confirm('Are you sure?')">Delete</a>
                     }
                 </td>
             </tr>
@@ -48,3 +53,42 @@
     </tbody>
 </table>
 
+<style>
+    /* Стилове за бутоните */
+    .btn-peach {
+        background-color: #f9c8a3; /* Светло прасковено */
+        border-color: #f9c8a3;
+    }
+
+        .btn-peach:hover {
+            background-color: #f7b088; /* Малко по-наситен прасковен цвят при hover */
+            border-color: #f7b088;
+        }
+
+    /* Стилове за hover ефект върху редовете */
+    .table-hover tbody tr:hover {
+        background-color: #fbf2ec; /* Много светъл прасковен фон при hover */
+    }
+
+    /* Персонализиран фон за заглавията на таблицата */
+    .thead-custom th {
+        background-color: #f7e1b5; /* Светло златисто за заглавията */
+        color: #d18f4f; /* Тъмно златисто за текста на заглавията */
+    }
+
+    /* Различни фонове за редовете в таблицата */
+    tbody tr:nth-child(even) {
+        background-color: #faf4e6; /* Светло кремаво за четни редове */
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #ffffff; /* Бял фон за нечетни редове */
+    }
+
+    /* Стил за заглавието на страницата */
+    .title-custom {
+        color: #d18f4f; /* Тъмно златисто за заглавието, което съвпада с цвета на таблицата */
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+    }
+</style>
