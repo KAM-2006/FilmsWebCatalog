@@ -35,10 +35,10 @@
                 <td style=" white-space:nowrap">
                     @if (User.IsInRole(AdminRoleName))
                     {
-                    <a class="btn btn-primary btn-sm" asp-controller="Genre" asp-action="Edit"
-                       asp-route-id="@genre.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-controller="Genre" asp-action="Delete"
-                       asp-route-id="@genre.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                        <a class="btn btn-primary btn-sm" asp-controller="Genre" asp-action="Edit"
+                           asp-route-id="@genre.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-controller="Genre" asp-action="Delete"
+                           asp-route-id="@genre.Id" onclick="return confirm('Are you sure?')">Delete</a>
                     }
                 </td>
             </tr>
