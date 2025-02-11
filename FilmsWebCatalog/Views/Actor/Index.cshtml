@@ -1,10 +1,10 @@
 ﻿@using FilmsWebCatalog.Data.Models;
 @using static FilmsWebCatalog.Common.AdminUser;
-@model List<Actor>
+@model List<Actor> 
 @{
 
 }
-<h2 class=" text-center mb-5">List of Actors</h2>
+<h2 class=" text-center mb-5">List of @Model.Count Actors</h2>
 <div class="row mb-5">
     <div class="col">
         @if (User.IsInRole(AdminRoleName))
